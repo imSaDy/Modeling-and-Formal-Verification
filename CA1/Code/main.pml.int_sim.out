@@ -1,0 +1,158 @@
+  0:	proc  - (:root:) creates proc  0 (TransactionCoordinator)
+  0:	proc  - (:root:) creates proc  1 (InventoryService)
+  0:	proc  - (:root:) creates proc  2 (PaymentService)
+  0:	proc  - (:root:) creates proc  3 (ShippingService)
+spin: main.pml:0, warning, global, 'mtype outcome' variable is never used (other than in print stmnts)
+Selected: 6
+
+  1:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:2 (state 1)	[inv!EXECUTE]
+  1:	proc  1 (InventoryService:1) inventory_service.pml:4 (state 1)	[inv?EXECUTE]
+  1:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:2 (state -)	[values: 3!EXECUTE]
+  1:	proc  1 (InventoryService:1) inventory_service.pml:4 (state -)	[values: 3?EXECUTE]
+
+Selected: 5
+
+  2:	proc  1 (InventoryService:1) utilities.pml:4 (state 2)	[inv!SUCCESS]
+  2:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:4 (state 2)	[inv?SUCCESS]
+  2:	proc  1 (InventoryService:1) utilities.pml:4 (state -)	[values: 3!SUCCESS]
+  2:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:4 (state -)	[values: 3?SUCCESS]
+
+Selected: 5
+
+  3:	proc  1 (InventoryService:1) utilities.pml:4 (state 3)	[reserved = 1]
+		InventoryService(1):reserved = 1
+
+Selected: 7
+
+  4:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:5 (state 3)	[pay!EXECUTE]
+  4:	proc  2 (PaymentService:1) payment_service.pml:5 (state 1)	[pay?EXECUTE]
+  4:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:5 (state -)	[values: 2!EXECUTE]
+  4:	proc  2 (PaymentService:1) payment_service.pml:5 (state -)	[values: 2?EXECUTE]
+
+Selected: 3
+
+  5:	proc  2 (PaymentService:1) utilities.pml:4 (state 2)	[pay!SUCCESS]
+  5:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:7 (state 4)	[pay?SUCCESS]
+  5:	proc  2 (PaymentService:1) utilities.pml:4 (state -)	[values: 2!SUCCESS]
+  5:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:7 (state -)	[values: 2?SUCCESS]
+
+Selected: 3
+
+  6:	proc  2 (PaymentService:1) utilities.pml:4 (state 3)	[authorized = 1]
+		PaymentService(2):authorized = 1
+
+Selected: 7
+
+  7:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:8 (state 5)	[ship!EXECUTE]
+  7:	proc  3 (ShippingService:1) shipping_service.pml:5 (state 1)	[ship?EXECUTE]
+  7:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:8 (state -)	[values: 1!EXECUTE]
+  7:	proc  3 (ShippingService:1) shipping_service.pml:5 (state -)	[values: 1?EXECUTE]
+
+Selected: 2
+
+  8:	proc  3 (ShippingService:1) utilities.pml:5 (state 4)	[ship!FAILURE]
+  8:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:12 (state 8)	[ship?FAILURE]
+  8:	proc  3 (ShippingService:1) utilities.pml:5 (state -)	[values: 1!FAILURE]
+  8:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:12 (state -)	[values: 1?FAILURE]
+
+Selected: 1
+
+  9:	proc  3 (ShippingService:1) utilities.pml:5 (state 5)	[prepared = 0]
+		ShippingService(3):prepared = 0
+
+Selected: 7
+
+ 10:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:13 (state 9)	[outcome = FAILURE]
+		outcome = FAILURE
+
+Selected: 7
+
+ 11:	proc  0 (TransactionCoordinator:1) utilities.pml:21 (state 10)	[pay!COMPENSATE]
+ 11:	proc  2 (PaymentService:1) utilities.pml:12 (state 9)	[pay?COMPENSATE]
+ 11:	proc  0 (TransactionCoordinator:1) utilities.pml:21 (state -)	[values: 2!COMPENSATE]
+ 11:	proc  2 (PaymentService:1) utilities.pml:12 (state -)	[values: 2?COMPENSATE]
+
+Selected: 3
+
+ 12:	proc  2 (PaymentService:1) utilities.pml:13 (state 10)	[authorized = 0]
+		PaymentService(2):authorized = 0
+
+Selected: 3
+
+ 13:	proc  2 (PaymentService:1) utilities.pml:14 (state 11)	[pay!COMPENSATED]
+ 13:	proc  0 (TransactionCoordinator:1) utilities.pml:22 (state 11)	[pay?COMPENSATED]
+ 13:	proc  2 (PaymentService:1) utilities.pml:14 (state -)	[values: 2!COMPENSATED]
+ 13:	proc  0 (TransactionCoordinator:1) utilities.pml:22 (state -)	[values: 2?COMPENSATED]
+
+Selected: 6
+
+ 14:	proc  0 (TransactionCoordinator:1) utilities.pml:21 (state 13)	[inv!COMPENSATE]
+ 14:	proc  1 (InventoryService:1) utilities.pml:12 (state 9)	[inv?COMPENSATE]
+ 14:	proc  0 (TransactionCoordinator:1) utilities.pml:21 (state -)	[values: 3!COMPENSATE]
+ 14:	proc  1 (InventoryService:1) utilities.pml:12 (state -)	[values: 3?COMPENSATE]
+
+Selected: 4
+
+ 15:	proc  1 (InventoryService:1) utilities.pml:13 (state 10)	[reserved = 0]
+		InventoryService(1):reserved = 0
+
+Selected: 4
+
+ 16:	proc  1 (InventoryService:1) utilities.pml:14 (state 11)	[inv!COMPENSATED]
+ 16:	proc  0 (TransactionCoordinator:1) utilities.pml:22 (state 14)	[inv?COMPENSATED]
+ 16:	proc  1 (InventoryService:1) utilities.pml:14 (state -)	[values: 3!COMPENSATED]
+ 16:	proc  0 (TransactionCoordinator:1) utilities.pml:22 (state -)	[values: 3?COMPENSATED]
+
+Selected: 5
+
+ 17:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:25 (state 29)	[inv!TERMINATE]
+ 17:	proc  1 (InventoryService:1) utilities.pml:15 (state 12)	[inv?TERMINATE]
+ 17:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:25 (state -)	[values: 3!TERMINATE]
+ 17:	proc  1 (InventoryService:1) utilities.pml:15 (state -)	[values: 3?TERMINATE]
+
+Selected: 5
+
+ 18:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:26 (state 30)	[pay!TERMINATE]
+ 18:	proc  2 (PaymentService:1) utilities.pml:15 (state 12)	[pay?TERMINATE]
+ 18:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:26 (state -)	[values: 2!TERMINATE]
+ 18:	proc  2 (PaymentService:1) utilities.pml:15 (state -)	[values: 2?TERMINATE]
+
+Selected: 5
+
+ 19:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:27 (state 31)	[ship!TERMINATE]
+ 19:	proc  3 (ShippingService:1) utilities.pml:16 (state 13)	[ship?TERMINATE]
+ 19:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:27 (state -)	[values: 1!TERMINATE]
+ 19:	proc  3 (ShippingService:1) utilities.pml:16 (state -)	[values: 1?TERMINATE]
+
+Selected: 3
+
+ 20:	proc  1 (InventoryService:1) inventory_service.pml:7 (state 17)	[inv!ACK]
+ 20:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:29 (state 32)	[inv?ACK]
+ 20:	proc  1 (InventoryService:1) inventory_service.pml:7 (state -)	[values: 3!ACK]
+ 20:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:29 (state -)	[values: 3?ACK]
+
+Selected: 2
+
+ 21:	proc  2 (PaymentService:1) payment_service.pml:11 (state 20)	[pay!ACK]
+ 21:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:30 (state 33)	[pay?ACK]
+ 21:	proc  2 (PaymentService:1) payment_service.pml:11 (state -)	[values: 2!ACK]
+ 21:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:30 (state -)	[values: 2?ACK]
+
+Selected: 1
+
+ 22:	proc  3 (ShippingService:1) shipping_service.pml:11 (state 20)	[ship!ACK]
+ 22:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:31 (state 34)	[ship?ACK]
+ 22:	proc  3 (ShippingService:1) shipping_service.pml:11 (state -)	[values: 1!ACK]
+ 22:	proc  0 (TransactionCoordinator:1) transaction_coordinator.pml:31 (state -)	[values: 1?ACK]
+
+Selected: 1
+
+ 22:	proc  3 (ShippingService:1) terminates
+Selected: 1
+
+ 22:	proc  2 (PaymentService:1) terminates
+Selected: 1
+
+ 22:	proc  1 (InventoryService:1) terminates
+ 22:	proc  0 (TransactionCoordinator:1) terminates
+4 processes created
