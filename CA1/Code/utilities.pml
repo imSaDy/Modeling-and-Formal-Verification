@@ -1,4 +1,3 @@
-/* The matching receive in the coordinator makes either result possible. */
 inline report_result(link, completed) {
     if
     :: link!SUCCESS -> completed = true
@@ -7,7 +6,6 @@ inline report_result(link, completed) {
 }
 
 inline await_shutdown(link, completed) {
-    /* The coordinator requests compensation only after a successful operation. */
     if
     :: link?COMPENSATE ->
         completed = false;
